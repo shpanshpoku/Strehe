@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frymëmarrje - Strehë</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        body {
+            color: #00373e;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        /* Navigation - Same as your existing site */
+        nav {
+            height: 131px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-center a {
+            font-size: 50px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: #00373e;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        /* Breathing Exercise Section */
+        .breathing-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #00373e;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #00373e;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .breathing-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 40px;
+        }
+
+        .breathing-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #FFE7D4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 1.5s ease-in-out;
+            box-shadow: 0 4px 20px rgba(0, 55, 62, 0.1);
+        }
+
+        .instruction-text {
+            font-size: 24px;
+            font-weight: 600;
+            color: #00373e;
+            margin-bottom: 30px;
+            min-height: 36px;
+        }
+
+        .timer-text {
+            font-size: 48px;
+            font-weight: 700;
+            color: #00373e;
+        }
+
+        .start-button {
+            padding: 14px 40px;
+            background-color: #00373e;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .start-button:hover {
+            background-color: #005766;
+        }
+
+        .phase-indicator {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .phase {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .phase-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .phase.active .phase-circle {
+            background-color: #00373e;
+        }
+
+        .phase-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Footer - Same as your existing site */
+        .site-footer {
+            background-color: white;
+            padding: 60px 0 30px;
+            border-top: 1px solid #f0f0f0;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 60px;
+        }
+
+        .footer-content {
+            flex: 1;
+        }
+
+        .footer-image {
+            flex: 1;
+        }
+
+        .footer-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        .footer-logo {
+            font-size: 36px;
+            font-weight: 700;
+            color: #00373e;
+            margin-bottom: 30px;
+        }
+
+        .footer-grid {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #00373e;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #005766;
+        }
+
+        .footer-copyright {
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .footer-tagline {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #00373e;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .footer-grid {
+                flex-wrap: wrap;
+            }
+            
+            .footer-column {
+                flex: 0 0 calc(50% - 20px);
+            }
+
+            .circle-container {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="#">Streha</a>
+                <a href="#">Psikologët</a>
+                <a href="#">Frymëmarrje</a>
+            </div>
+            <div class="nav-center">
+                <a href="#">Strehë</a>
+            </div>
+            <div class="nav-right">
+                <a href="#">Aktivitete</a>
+                <a href="#">Kontakti</a>
+                <a href="#">Profili</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="breathing-section">
+        <div class="section-header">
+            <h1 class="section-title">Ushtrime të Frymëmarrjes</h1>
+            <p class="section-subtitle">Zbritni stresin dhe rritni qetësinë me këtë ushtrim të thjeshtë frymëmarrjeje 4-7-8</p>
+        </div>
+
+        <div class="breathing-container">
+            <p class="instruction-text">Kliko 'Filloni' për të filluar ushtrimin</p>
+            
+            <div class="circle-container">
+                <div class="breathing-circle" id="breathingCircle">
+                    <div class="timer-text" id="timerText">0</div>
+                </div>
+            </div>
+            
+            <button class="start-button" id="startButton">Filloni</button>
+            
+            <div class="phase-indicator">
+                <div class="phase" id="inhalePhase">
+                    <div class="phase-circle"></div>
+                    <span class="phase-label">Frymëmarrje</span>
+                </div>
+                <div class="phase" id="holdPhase">
+                    <div class="phase-circle"></div>
+                    <span class="phase-label">Mbaj</span>
+                </div>
+                <div class="phase" id="exhalePhase">
+                    <div class="phase-circle"></div>
+                    <span class="phase-label">Frymëlëshim</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <h2 class="footer-logo">Solus</h2>
+                
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <ul class="footer-links">
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Therapists</a></li>
+                            <li><a href="#">Resources</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <ul class="footer-links">
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">YouTube</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <ul class="footer-links">
+                            <li><a href="#">Terms Of Use</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-copyright">
+                    <p>© 2035 Solus. All Rights Reserved.</p>
+                </div>
+                
+                <div class="footer-tagline">
+                    <p>Find Support, Guidance, and Balance.</p>
+                </div>
+            </div>
+            
+            <div class="footer-image">
+                <img src="footer-image.jpg" alt="Footer Illustration">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Breathing Exercise Script
+        document.addEventListener('DOMContentLoaded', function() {
+            const breathingCircle = document.getElementById('breathingCircle');
+            const timerText = document.getElementById('timerText');
+            const startButton = document.getElementById('startButton');
+            const instructionText = document.querySelector('.instruction-text');
+            const inhalePhase = document.getElementById('inhalePhase');
+            const holdPhase = document.getElementById('holdPhase');
+            const exhalePhase = document.getElementById('exhalePhase');
+            
+            // Breathing exercise parameters (4-7-8 technique)
+            const inhaleTime = 4;    // seconds
+            const holdTime = 7;      // seconds
+            const exhaleTime = 8;    // seconds
+            let totalTime = inhaleTime + holdTime + exhaleTime;
+            
+            let isRunning = false;
+            let timer;
+            let currentTime = 0;
+            let currentPhase = '';
+            
+            startButton.addEventListener('click', function() {
+                if (!isRunning) {
+                    startExercise();
+                    startButton.textContent = 'Ndalo';
+                } else {
+                    stopExercise();
+                    startButton.textContent = 'Filloni';
+                }
+                isRunning = !isRunning;
+            });
+            
+            function startExercise() {
+                currentTime = 0;
+                updateExercise();
+                timer = setInterval(updateExercise, 1000);
+            }
+            
+            function stopExercise() {
+                clearInterval(timer);
+                breathingCircle.style.transform = 'scale(1)';
+                timerText.textContent = '0';
+                instructionText.textContent = 'Kliko "Filloni" për të filluar ushtrimin';
+                resetPhases();
+            }
+            
+            function updateExercise() {
+                currentTime = (currentTime + 1) % totalTime;
+                
+                if (currentTime <= inhaleTime) {
+                    // Inhale phase
+                    if (currentPhase !== 'inhale') {
+                        currentPhase = 'inhale';
+                        instructionText.textContent = 'Frymëmarrje... Merrni frymë ngadalë përmes hundës';
+                        setActivePhase('inhale');
+                    }
+                    const scale = 1 + (0.5 * (currentTime / inhaleTime));
+                    breathingCircle.style.transform = `scale(${scale})`;
+                    timerText.textContent = inhaleTime - currentTime;
+                } else if (currentTime <= inhaleTime + holdTime) {
+                    // Hold phase
+                    if (currentPhase !== 'hold') {
+                        currentPhase = 'hold';
+                        instructionText.textContent = 'Mbaj... Mbajeni frymën';
+                        setActivePhase('hold');
+                    }
+                    timerText.textContent = (inhaleTime + holdTime) - currentTime;
+                } else {
+                    // Exhale phase
+                    if (currentPhase !== 'exhale') {
+                        currentPhase = 'exhale';
+                        instructionText.textContent = 'Frymëlëshim... Lëshoni frymën ngadalë përmes gojës';
+                        setActivePhase('exhale');
+                    }
+                    const remainingExhaleTime = totalTime - currentTime;
+                    const scale = 1.5 - (0.5 * (remainingExhaleTime / exhaleTime));
+                    breathingCircle.style.transform = `scale(${scale})`;
+                    timerText.textContent = remainingExhaleTime;
+                }
+            }
+            
+            function setActivePhase(phase) {
+                // Reset all phases
+                inhalePhase.classList.remove('active');
+                holdPhase.classList.remove('active');
+                exhalePhase.classList.remove('active');
+                
+                // Activate current phase
+                if (phase === 'inhale') {
+                    inhalePhase.classList.add('active');
+                } else if (phase === 'hold') {
+                    holdPhase.classList.add('active');
+                } else if (phase === 'exhale') {
+                    exhalePhase.classList.add('active');
+                }
+            }
+            
+            function resetPhases() {
+                inhalePhase.classList.remove('active');
+                holdPhase.classList.remove('active');
+                exhalePhase.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
